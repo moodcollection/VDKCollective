@@ -379,7 +379,8 @@ h1 {
     <span class="time-pill">Duration: 10 minutes</span>
   </header>
 
-  <form id="form" autocomplete="off">
+  <form id="form" autocomplete="off" netlify name="vdk-assessment" netlify-honeypot="bot-field">
+  <input type="hidden" name="bot-field" style="display:none">
 
     <!-- PRIMARY CONTACT -->
     <div class="q-section">
@@ -648,15 +649,23 @@ h1 {
 
   /* ── Submit ───────────────────────────────────────────── */
 document.getElementById('finish').addEventListener('click', function () {
-    var summaryText = buildSummary();
-    var biz         = val('biz') || 'Assessment';
-    var subject     = encodeURIComponent('Business Assessment Questionnaire — ' + biz);
-    var body        = encodeURIComponent(summaryText);
-    window.location.href = 'mailto:' + VDK_EMAIL + '?subject=' + subject + '&body=' + body;
-    setTimeout(function () {
-      window.location.href = 'thank-you.html';
-    }, 1000);
+  var summaryText = buildSummary();
+
+  var formData = new FormData();
+  formData.append('form-name', 'vdk-assessment');
+  formData.append('submission', summaryText);
+
+  fetch('/', {
+    method: 'POST',
+    body: formData
+  })
+  .then(function () {
+    window.location.href = 'thank-you.html';
+  })
+  .catch(function () {
+    window.location.href = 'thank-you.html';
   });
+});
 </script>
 
 </body>
