@@ -5,11 +5,7 @@
        The base64 data URI is written once to window._VDK by a
        <script> block in index.html, then applied to every logo
        image here — keeping it out of the HTML file payload. */
-    if (window._VDK) {
-      document.querySelectorAll('.logo-img').forEach(function (img) {
-        img.src = window._VDK;
-      });
-    }
+  
 
     /* ============================================================
        MOBILE NAVIGATION
