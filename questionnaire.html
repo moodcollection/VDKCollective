@@ -655,7 +655,7 @@ document.getElementById('finish').addEventListener('click', function () {
   formData.append('form-name', 'vdk-assessment');
   formData.append('submission', summaryText);
 
-  fetch('/', {
+  fetch('/questionnaire.html', {
     method: 'POST',
     body: formData
   })
