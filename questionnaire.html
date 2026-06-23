@@ -647,11 +647,15 @@ h1 {
   }
 
   /* ── Submit ───────────────────────────────────────────── */
-   {
-    var biz     = val('biz') || 'Assessment';
-    var subject = encodeURIComponent('Supporting documents — ' + biz);
-    var body    = encodeURIComponent('Hi,\n\nPlease find my supporting financial documents attached.\n\nThank you.');
+document.getElementById('finish').addEventListener('click', function () {
+    var summaryText = buildSummary();
+    var biz         = val('biz') || 'Assessment';
+    var subject     = encodeURIComponent('Business Assessment Questionnaire — ' + biz);
+    var body        = encodeURIComponent(summaryText);
     window.location.href = 'mailto:' + VDK_EMAIL + '?subject=' + subject + '&body=' + body;
+    setTimeout(function () {
+      window.location.href = 'thank-you.html';
+    }, 1000);
   });
 </script>
 
