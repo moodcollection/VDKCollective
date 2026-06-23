@@ -75,7 +75,9 @@
       margin: 0 0 14px;
     }
     h1 {
-      font-family: var(--font-display);
+      h1 {
+  font-family: var(--font-body);
+  text-transform: uppercase;
       font-weight: 600;
       color: var(--charcoal);
       font-size: 1.6rem;
@@ -669,12 +671,10 @@
 
   document.getElementById('finish').addEventListener('click', function () {
     summaryText = buildSummary();
-    document.getElementById('summary').textContent = summaryText;
-    var nm = val('name');
-    document.getElementById('thanks').textContent = nm ? ('Thank you, ' + nm) : 'Thank you';
-    document.getElementById('form').style.display = 'none';
-    document.getElementById('done').style.display  = 'block';
-    document.querySelector('header').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    var biz     = val('biz') || 'Assessment';
+    var subject = encodeURIComponent('Business Assessment Questionnaire — ' + biz);
+    var body    = encodeURIComponent(summaryText);
+    window.location.href = 'mailto:' + VDK_EMAIL + '?subject=' + subject + '&body=' + body;
   });
 
   /* ── Email ────────────────────────────────────────────── */
